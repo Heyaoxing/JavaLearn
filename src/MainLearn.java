@@ -6,8 +6,18 @@ public class MainLearn {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ThreadLearn thread=new ThreadLearn("demo");
-		thread.start();
-		System.out.println("完成");
+		ThreadLearn runnable=new ThreadLearn();
+		Thread thread1=new Thread(runnable);
+		thread1.start();
+		System.out.println("开始");
+		try {
+			Thread.sleep(200);
+			thread1.interrupt();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("报错:"+e.getStackTrace());
+		}
+		
+		
 	}
 }

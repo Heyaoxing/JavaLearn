@@ -1,25 +1,16 @@
 package Basic;
 
-public class ThreadLearn implements Runnable  {
-	private Thread thread;
-	public ThreadLearn(String name){
-		thread=new Thread(this,name);
-	}
-	
+public class ThreadLearn extends Thread {
 	@Override
-	public void run() {
-		for(int i=0;i<20;i++){
-			System.out.println(i);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public   void run() {
+		Thread.currentThread().setPriority(6);
+		for(int i=0;i<2000000;i++){
+			if(Thread.interrupted()){  //调用interrupt()方法标记状态为中断
+				System.out.println("中断线程");
+				break;
 			}
+			System.out.println(i);
 		}
-	}
-	
-	public void start(){
-		thread.start();
+		System.out.println("完成");
 	}
 }
