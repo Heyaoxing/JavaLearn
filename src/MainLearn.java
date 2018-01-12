@@ -1,23 +1,24 @@
-import Utils.StringUtil;
-import Basic.DateLearn;
-import Basic.ThreadLearn;
-import Basic.throwLearn;
 public class MainLearn {
 
+	public volatile static int i = 0;
+	public  static void test() {
+			i++;
+	}
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ThreadLearn runnable=new ThreadLearn();
-		Thread thread1=new Thread(runnable);
-		thread1.start();
-		System.out.println("开始");
-		try {
-			Thread.sleep(200);
-			thread1.interrupt();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			System.out.println("报错:"+e.getStackTrace());
+		for (int b = 0; b < 10; b++) {
+			new Thread() {
+				public void run() {
+					for (int a = 0; a < 1000; a++) {
+						test();
+					}
+				}
+			}.start();
 		}
-		
-		
+		while (Thread.activeCount() > 1){
+			Thread.yield();
+		}
+			
+		System.out.println("结束:" + i);
 	}
 }
