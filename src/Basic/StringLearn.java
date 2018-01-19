@@ -2,6 +2,7 @@ package Basic;
 
 import Interface.ILearn;
 
+
 /**
  * 
  * @ClassName: StringHelper
@@ -11,7 +12,11 @@ import Interface.ILearn;
  *
  */
 public class StringLearn implements ILearn {
-
+     
+	public  String namepublic="ni hao namepublic Reflection";
+	
+	private  String nameprivate="ni hao private Reflection";
+	
 	/**
 	 * String是引用类型
 	 * 原理 JVM中的常量是存储在常量池中，常量池在内存中是以表的形式存在，对于String类型，
